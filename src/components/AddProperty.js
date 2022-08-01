@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "../styles/add-property.css";
+import axios from "axios";
+import Alert from "./Alert";
 
 const AddProperties = () => {
   const initialState = {
@@ -12,11 +14,34 @@ const AddProperties = () => {
       city: "Manchester",
       email: "",
     },
+    alert: {
+      message: "",
+      isSuccess: false,
+    },
   };
   const [fields, setFields] = useState(initialState.fields);
+  const [alert, setAlert] = useState(initialState.alert);
 
   const handleAddProperty = (event) => {
     event.preventDefault();
+    setAlert({ message: "", isSuccess: false });
+
+    // const { title, type, bedrooms, bathrooms, price, city, email } = fields;
+
+    axios
+      .post(`http://localhost:3000/api/v1/PropertyListing`, { ...fields })
+      .then(() =>
+        setAlert({
+          message: "Property Added",
+          isSuccess: true,
+        })
+      )
+      .catch(() =>
+        setAlert({
+          message: "Server error. Please try again later.",
+          isSuccess: false,
+        })
+      );
   };
 
   const handleFieldChange = (event) => {
@@ -26,6 +51,7 @@ const AddProperties = () => {
   return (
     <div className="add-property">
       <form onSubmit={handleAddProperty}>
+        <Alert message={alert.message} success={alert.isSuccess} />
         <div className="add-property-entries">
           <label htmlFor="bathrooms">
             Bathrooms
