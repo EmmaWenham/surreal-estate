@@ -1,0 +1,37 @@
+.property-card {
+  background-color: aliceblue;
+  font-size: 20px;
+  text-align: center;
+}
+
+.title {
+  padding: 1%;
+  color: azure;
+  font-size: 20px;
+}
+
+.type {
+  padding: 1%;
+}
+
+.bathrooms {
+  padding: 1%;
+}
+
+.bedrooms {
+  padding: 1%;
+}
+
+.price {
+  padding: 1%;
+}
+
+.city {
+  padding: 1%;
+}
+
+.email {
+  padding: 1%;
+  font-weight: bold;
+  background-color: maroon;
+}

@@ -53,6 +53,47 @@ const AddProperties = () => {
       <form onSubmit={handleAddProperty}>
         <Alert message={alert.message} success={alert.isSuccess} />
         <div className="add-property-entries">
+          <label htmlFor="title">
+            title
+            <input
+              id="title"
+              name="title"
+              value={fields.title}
+              onChange={handleFieldChange}
+              placeholder="3 Bedroom Terrace"
+            />
+          </label>
+          <label htmlFor="city">
+            City
+            <select
+              id="city"
+              name="city"
+              value={fields.city}
+              onChange={handleFieldChange}
+            >
+              <option value="Manchester">Manchester</option>
+              <option value="Leeds">Leeds</option>
+              <option value="Sheffield">Sheffield</option>
+              <option value="Liverpool">Liverpool</option>
+            </select>
+          </label>
+          <label htmlFor="type">
+            Type
+            <select
+              id="type"
+              name="type"
+              value={fields.type}
+              onChange={handleFieldChange}
+            >
+              <option value="flat">Flat</option>
+              <option value="detached">Detached</option>
+              <option value="semi-detached">Semi-Detached</option>
+              <option value="terraced">Terraced</option>
+              <option value="end-of-terraced">End of Terrace</option>
+              <option value="cottage">Cottage</option>
+              <option value="bungalow">Bungalow</option>
+            </select>
+          </label>
           <label htmlFor="bathrooms">
             Bathrooms
             <input
@@ -89,48 +130,6 @@ const AddProperties = () => {
               name="price"
               value={fields.price}
               placeholder="£200,000"
-            />
-          </label>
-
-          <label htmlFor="city">
-            City
-            <select
-              id="city"
-              name="city"
-              value={fields.city}
-              onChange={handleFieldChange}
-            >
-              <option value="Manchester">Manchester</option>
-              <option value="Leeds">Leeds</option>
-              <option value="Sheffield">Sheffield</option>
-              <option value="Liverpool">Liverpool</option>
-            </select>
-          </label>
-          <label htmlFor="type">
-            Type
-            <select
-              id="type"
-              name="type"
-              value={fields.type}
-              onChange={handleFieldChange}
-            >
-              <option value="flat">Flat</option>
-              <option value="detached">Detached</option>
-              <option value="semi-detached">Semi-Detached</option>
-              <option value="terraced">Terraced</option>
-              <option value="end-of-terraced">End of Terrace</option>
-              <option value="cottage">Cottage</option>
-              <option value="bungalow">Bungalow</option>
-            </select>
-          </label>
-          <label htmlFor="title">
-            title
-            <input
-              id="title"
-              name="title"
-              value={fields.title}
-              onChange={handleFieldChange}
-              placeholder="3 Bedroom Terrace"
             />
           </label>
           <button type="submit">Add</button>
