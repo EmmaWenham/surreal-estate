@@ -1,24 +1,52 @@
 import React from "react";
 import "../styles/navbar.css";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import FacebookLogin from "react-facebook-login";
 
-const NavBar = () => {
+const Navbar = ({ userID, onLogin, onLogout }) => {
   return (
     <div className="NavBar">
       <img
-        className="logo"
-        src="https://mcrcodes.s3.eu-west-2.amazonaws.com/course/surreal-estate/logo.png"
-        alt="estate-logo"
+        className="surrealEstateLogo"
+        src="https://mcrcodes.s3.eu-west-2.amazonws.com/course/surreal-estate/logo.png"
+        alt="surrealEstateLogo"
       />
       <ul className="navbar-links">
-        <li className="navbar-links-item">
-          <Link to="/">View Properties</Link>
-        </li>
-        <li className="navbar-links-item">
-          <Link to="/add-property">Add a property</Link>
-        </li>
+        {userID && (
+          <div className="navbar-links">
+            <Link className="navbar-links-item" to="/View Properties">
+              View Properties
+            </Link>
+            <Link className="navbar-links-item" to="/add Property">
+              Add Property
+            </Link>
+          </div>
+        )}
+        {userID ? (
+          <button type="button" className="navbar-sign-out" onClick={onLogout}>
+            Sign Out
+          </button>
+        ) : (
+          <FacebookLogin
+            appId="1718923228476668"
+            // autoLoad={true}
+            fields="name,email,picture"
+            cssClass="navbar-facebook-button"
+            callback={onLogin}
+          />
+        )}
       </ul>
     </div>
   );
 };
-export default NavBar;
+
+Navbar.propTypes = {
+  onLogin: PropTypes.func.isRequired,
+  onLogout: PropTypes.func.isRequired,
+  userID: PropTypes.string,
+};
+Navbar.defaultProps = {
+  userID: "",
+};
+export default Navbar;
